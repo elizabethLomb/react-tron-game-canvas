@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
-const unit = 15;
-const boardSize = 900;
+import { UNIT, BOARD_SIZE } from '../constants/board'
 
 const Board = () => {
   const canvasRef = useRef();
@@ -9,21 +7,21 @@ const Board = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext('2d');
 
-    context.beginPath(); //
+    context.beginPath(); //start to drawing
     context.strokeStyle = '#08607352'
-    for (let i = unit * 2; i <= boardSize; i += unit * 2) {
+    for (let i = UNIT * 2; i <= BOARD_SIZE; i += UNIT * 2) {
       context.moveTo(i, 0);
-      context.lineTo(i, boardSize)
+      context.lineTo(i, BOARD_SIZE)
     }
-    for (let i = unit * 2; i <= boardSize; i += unit * 2) {
+    for (let i = UNIT * 2; i <= BOARD_SIZE; i += UNIT * 2) {
       context.moveTo(0, i);
-      context.lineTo(boardSize, i)
+      context.lineTo(BOARD_SIZE, i)
     }
-    context.stroke();
-    context.closePath();
+    context.stroke(); //draw
+    context.closePath(); //stop drawing
   }, []);
 
-  return <canvas ref={canvasRef} width={boardSize} height={boardSize} className="board"/>
+  return <canvas ref={canvasRef} width={BOARD_SIZE} height={BOARD_SIZE} className="board"/>
 }
 
 export default Board;
