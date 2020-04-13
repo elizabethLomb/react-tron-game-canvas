@@ -20,7 +20,7 @@ function App() {
 
   useInterval(() => {
     gameDispatch({ type: 'move' })
-  }, 1000)
+  }, 1000 / 60)
 
   return (
     <Board />
