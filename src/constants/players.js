@@ -1,11 +1,16 @@
-import { KEYBOARD_ONE, KEYBOARD_TWO } from './keyboard';
 import { UNIT } from './board';
+import { DIRECTIONS } from './directions';
 
 export const PLAYER_ONE = {
-  COLOR: '#ffdb00',
-  ID: 1,
-  KEYS: { KEYBOARD_ONE },
-  direction: 'right',
+  color: '#ffdb00',
+  id: 1,
+  keys: { 
+    38: DIRECTIONS.UP,
+    39: DIRECTIONS.RIGHT,
+    40: DIRECTIONS.DOWN,
+    37: DIRECTIONS.LEFT
+  },
+  direction: DIRECTIONS.RIGHT,
   position: {
     x: UNIT * 6,
     y: UNIT * 6
@@ -13,12 +18,17 @@ export const PLAYER_ONE = {
 }
 
 export const PLAYER_TWO = {
-  COLOR: '#2392ff',
-  ID: 2,
-  KEYS: { KEYBOARD_TWO },
-  direction: 'left',
+  color: '#2392ff',
+  id: 2,
+  keys: {
+    87: DIRECTIONS.UP,
+    68: DIRECTIONS.RIGHT,
+    83: DIRECTIONS.DOWN,
+    65: DIRECTIONS.LEFT
+  },
+  direction: DIRECTIONS.LEFT,
   position: {
-    x: UNIT * 43,
-    y: UNIT * 43
+    x: UNIT * 50,
+    y: UNIT * 50
   }
 }
