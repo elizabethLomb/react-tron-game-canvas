@@ -14,7 +14,8 @@ export const PLAYER_ONE = {
   position: {
     x: UNIT * 6,
     y: UNIT * 6
-  }
+  },
+  hasDied: false
 }
 
 export const PLAYER_TWO = {
@@ -30,5 +31,6 @@ export const PLAYER_TWO = {
   position: {
     x: UNIT * 50,
     y: UNIT * 50
-  }
+  },
+  hasDied: false
 }
