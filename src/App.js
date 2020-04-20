@@ -109,7 +109,7 @@ function App() {
         if(game.gameStatus === GAME_OVER) handleRestart();
       }
       gameDispatch({ type: 'changeDirection', key })
-    }
+    } 
 
     document.addEventListener('keydown', handleKeyPress);
 
