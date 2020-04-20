@@ -15,7 +15,8 @@ export const PLAYER_ONE = {
     x: UNIT * 6,
     y: UNIT * 6
   },
-  hasDied: false
+  hasDied: false,
+  instructions: 'Flechas de dirección'
 }
 
 export const PLAYER_TWO = {
@@ -32,5 +33,6 @@ export const PLAYER_TWO = {
     x: UNIT * 50,
     y: UNIT * 50
   },
-  hasDied: false
+  hasDied: false,
+  instructions:'AWSD'
 }

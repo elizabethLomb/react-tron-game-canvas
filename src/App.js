@@ -7,6 +7,9 @@ import playerChangeDirection from './helpers/playerChangeDirection';
 import getPlayableCells from './helpers/getPlayableCells';
 import { BOARD_SIZE, UNIT } from './constants/board';
 import getCellKey from './helpers/getCellKey';
+import { GAME_READY, GAME_PLAYING, GAME_OVER } from './constants/gameStatus';
+import Start from './components/Start';
+import Result from './components/Result';
 
 const players = [
   PLAYER_ONE,
@@ -19,10 +22,19 @@ const initialState = {
     BOARD_SIZE,
     UNIT,
     players.map(player => getCellKey(player.position.x, player.position.y))
-  )
+  ),
+  gameStatus: GAME_READY
 }
 
 function updateGame(game, action) {
+
+  if(action.type === 'start') {
+    return {...initialState, gameStatus: GAME_PLAYING }
+  }
+
+  if(action.type === 'restart') {
+    return {...initialState, gameStatus: GAME_READY }
+  }
 
   if(action.type === 'move') {
     const newPlayers = game.players.map(player =>  ({
@@ -45,12 +57,13 @@ function updateGame(game, action) {
       }
     });
 
-    const ocupiedCells = game.players.map(player => getCellKey(player.position.x, player.position.y));
+    const ocupiedCells = game.players.map(player => getCellKey(player.position.x, player.position.y ));
     const playableCells = game.playableCells.filter(cell => !ocupiedCells.includes(cell))
 
     return {
       players: checkCollition, //return players if not collition
-      playableCells: playableCells //return avalible cells
+      playableCells: playableCells, //return avalible cells
+      gameStatus: checkCollition.filter(player => player.hasDied).length === 0 ? GAME_PLAYING : GAME_OVER
     }
   }
 
@@ -66,13 +79,15 @@ function updateGame(game, action) {
 
     return {
       players: newPlayers,
-      playableCells: game.playableCells
+      playableCells: game.playableCells,
+      gameStatus: game.gameStatus
     }
   }
 }
 
 function App() {
   const [game, gameDispatch] = useReducer(updateGame, initialState);
+  let result = null
 
   const players = game.players;
   const diedPlayers = players.filter(p => p.hasDied)
@@ -81,13 +96,19 @@ function App() {
   
   useInterval(() => {
     gameDispatch({ type: 'move' })
-  }, diedPlayers.length > 0 ? null : 100) //hasDied == true, game stops
+  }, game.gameStatus !== GAME_PLAYING ? null : 100);
+  //diedPlayers.length > 0 ? null : 100)
 
   //keyboard listener
   useEffect(function() {
     function handleKeyPress(event) {
       const key = `${event.keyCode}`;
-      gameDispatch({ type: 'changeDirection', key });
+
+      if(key === '13') {
+        if(game.gameStatus === GAME_READY) handleStart();
+        if(game.gameStatus === GAME_OVER) handleRestart();
+      }
+      gameDispatch({ type: 'changeDirection', key })
     }
 
     document.addEventListener('keydown', handleKeyPress);
@@ -95,10 +116,24 @@ function App() {
     return function cleanUp() {
       document.removeEventListener('keydown', handleKeyPress);
     }
-  }, []);
+  }, [game.gameStatus]);
+
+  const handleStart = () => gameDispatch({ type: 'start' })
+  const handleRestart = () => gameDispatch({ type: 'restart' })
+
+  if(game.gameStatus === GAME_OVER){
+    const winningPlayers = game.players.filter(player => !player.hasDied)
+    if(winningPlayers.length === 0) result = 'TIE'
+
+    result = `The winner is ${winningPlayers.map(player => `Player ${player.id}`).join(',')}`
+  }
 
   return (
-    <Board players={game.players}/>
+    <>
+    <Board players={game.players} gameStatus={game.gameStatus}/>
+    {game.gameStatus === GAME_OVER && <Result onClick={handleRestart} result={result} />}
+    {game.gameStatus === GAME_READY && <Start onCLick={handleStart}/>}
+    </>
   );
 }
 
