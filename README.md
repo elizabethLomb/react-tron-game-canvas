@@ -6,9 +6,9 @@ I follow this awesome tutorial [Toturial](https://www.youtube.com/channel/UCMVky
 
 ### Game preview
 
-![Start](https://github.com/elizabethLomb/react-tron-game-canvas/tree/master/public/start.png)
-![Game](https://github.com/elizabethLomb/react-tron-game-canvas/tree/master/public/game.png)
-![Game Over](https://github.com/elizabethLomb/react-tron-game-canvas/tree/master/public/game_over.png)
+![Start](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/start.png)
+![Game](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/game.png)
+![Game Over](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/game_over.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
