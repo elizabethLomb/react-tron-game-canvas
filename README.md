@@ -2,13 +2,13 @@
 
 This is a simple Tron Game, I just was having fun and practicing at the same time, it's open source for whoever wants to play it or modify it, follow the instructions below
 
-I follow this awesome tutorial [Toturial](https://www.youtube.com/channel/UCMVky0AEACLisBqM6mXxCng)
+I follow this awesome tutorial [Toturial](https://www.youtube.com/channel/UCMVky0AEACLisBqM6mXxCng){target="_blank"}
 
 ### Game preview
 
-![Start](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/start.png){target="_blank"}
-![Game](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/game.png){target="_blank"}
-![Game Over](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/game_over.png){target="_blank"}
+![Start](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/start.png)
+![Game](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/game.png)
+![Game Over](https://github.com/elizabethLomb/react-tron-game-canvas/blob/master/public/game_over.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
